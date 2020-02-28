@@ -1,29 +1,19 @@
-import React from 'react'
-import { Router, Route } from 'react-router'
-
-// const About = React.createClass({
-//   render() {
-//     return <h3>About</h3>
-//   }
-// })
+import React from 'react';
+import { Router, Route } from 'react-router';
+import routers from './routers';
+import Home from '../modules/home';
+import { createBrowserHistory } from 'history';
 
 const App = () => {
-    return (
-        <React.Fragment>
-            {
-                routes.map((route, i) => (
-                    <Route key={i} {...route} />
-                ))
-            }
-        </React.Fragment>
-    );
-};
-const Root = () => {
-    return (
-        <Router>
-            <App />
-        </Router>
-    );
-};
+    return <Router history={createBrowserHistory()} forceRefresh={true}>
+        <div>aedwe</div>
+        {
+            routers.map((item, index) => {
+                console.log(item);
+                return <Route key={index} path={item.path} exact component={item.component}></Route>
+            })
+        }
+    </Router>
+}
 
-export default Root;
+export default App;
